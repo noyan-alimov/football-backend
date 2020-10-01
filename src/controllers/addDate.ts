@@ -7,12 +7,12 @@ export const addDate = (req: Request, res: Response) => {
     connectionToDB.then(async connection => {
         let date = new Datee();
         date.date = req.body.date;
-        const footballPitchId = req.body.id;
 
+        const footballPitchId = req.body.footballPitchId;
         let footballPitchRepository = connection.getRepository(FootballPitch);
         let footballPitch = await footballPitchRepository.findOne({ id: footballPitchId });
-
         date.footballPitch = footballPitch;
+
         let dateRepository = connection.getRepository(Datee);
         await dateRepository.save(date);
 
