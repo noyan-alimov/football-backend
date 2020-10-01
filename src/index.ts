@@ -4,6 +4,7 @@ import { Request, Response } from "express";
 import * as cors from 'cors';
 import { addFootballPitch } from './controllers/addFootballPitch';
 import { addDate } from './controllers/addDate';
+import { addHourlyTime } from './controllers/addHourlyTime';
 
 const app = express();
 
@@ -21,6 +22,10 @@ app.post('/api/add-football-pitch', (req: Request, res: Response) => {
 app.post('/api/add-date', (req: Request, res: Response) => {
     addDate(req, res);
 });
+
+app.post('/api/add-hourly-time', (req: Request, res: Response) => {
+    addHourlyTime(req, res);
+})
 
 const port: number = 8000;
 app.listen(port, () => {

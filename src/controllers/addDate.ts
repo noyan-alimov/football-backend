@@ -11,19 +11,20 @@ export const addDate = (req: Request, res: Response) => {
         const footballPitchId = req.body.footballPitchId;
         let footballPitchRepository = connection.getRepository(FootballPitch);
         let footballPitch = await footballPitchRepository.findOne({ id: footballPitchId });
-        date.footballPitch = footballPitch;
+
+        if (!footballPitch) {
+            res.status(404).json({ success: false, message: 'football pitch not found' });
+        } else {
+            date.footballPitch = footballPitch;
+        }
 
         let dateRepository = connection.getRepository(Datee);
         await dateRepository.save(date);
 
-        res.json({
-            success: true,
-            date,
-            footballPitch
-        });
+        res.status(201).json({ success: true, date });
     }).catch(error => {
         console.log('Error adding timetable', error);
-        res.status(500).json({ success: false });
+        res.status(500).json({ success: false, message: 'internal server error' });
     })
 }
 

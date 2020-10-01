@@ -11,9 +11,6 @@ export class HourlyTime {
     time: string;
 
     @Column({ default: false })
-    availableToBook: boolean;
-
-    @Column({ default: false })
     booked: boolean;
 
     @ManyToOne(type => Datee, datee => datee.hourlyTimes)

@@ -12,12 +12,9 @@ export const addFootballPitch = (req: Request, res: Response) => {
         let footballPitchRepository = connection.getRepository(FootballPitch);
         await footballPitchRepository.save(footballPitch);
 
-        res.status(201).json({
-            success: true,
-            footballPitch
-        });
+        res.status(201).json({ success: true, footballPitch });
     }).catch(error => {
         console.log('Error adding football pitch, something is wrong with the database', error);
-        res.status(500).json({ success: false });
+        res.status(500).json({ success: false, message: 'internal server error' });
     })
 }
