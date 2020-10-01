@@ -7,8 +7,13 @@ export class HourlyTime {
     @PrimaryGeneratedColumn()
     id: number;
 
-    @Column()
+    @Column({
+        default: false
+    })
     booked: boolean;
+
+    @Column()
+    time: string;
 
     @ManyToOne(type => Datee, datee => datee.hourlyTimes)
     date: Datee;
