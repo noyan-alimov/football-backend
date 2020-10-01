@@ -5,7 +5,7 @@ import { FootballPitch } from '../entities/FootballPitch';
 import { HourlyTime } from "../entities/HourlyTime";
 import { hourlyTimes } from "../helpers/hourlyTimes";
 
-export const addDate = (req: Request, res: Response) => {
+export const addDateAndHourlyTimes = (req: Request, res: Response) => {
     connectionToDB.then(async connection => {
         let date = new Datee();
         date.date = req.body.date;
@@ -26,6 +26,8 @@ export const addDate = (req: Request, res: Response) => {
         });
 
         await dateRepository.save(date);
+
+        res.status(201).json({ success: true, date });
     }).catch(error => {
         console.log('Error adding timetable', error);
         res.status(500).json({ success: false });
