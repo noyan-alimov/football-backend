@@ -14,6 +14,5 @@ export const connectionToDB = createConnection({
         FootballPitch,
         Datee,
         HourlyTime
-    ],
-    synchronize: true,
+    ]
 });

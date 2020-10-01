@@ -7,18 +7,20 @@ export const addDate = (req: Request, res: Response) => {
     connectionToDB.then(async connection => {
         let date = new Datee();
         date.date = req.body.date;
+        date.footballPitchId = req.body.footballPitchId;
         let dateRepository = connection.getRepository(Datee);
         await dateRepository.save(date);
 
-        const footballPitchId = req.body.footballPitchId;
         let footballPitchRepository = connection.getRepository(FootballPitch);
-        let footballPitch = await footballPitchRepository.findOne({ id: footballPitchId });
-        console.log(footballPitch);
-        console.log(footballPitch.dates);
+        let footballPitch = await footballPitchRepository.find({ id: req.body.footballPitchId });
         footballPitch.dates = [...footballPitch.dates, date];
         await footballPitchRepository.save(footballPitch);
 
-        res.status(201).json({ success: true, date, footballPitch });
+        res.json({
+            success: true,
+            date,
+            footballPitch
+        });
     }).catch(error => {
         console.log('Error adding timetable', error);
         res.status(500).json({ success: false });

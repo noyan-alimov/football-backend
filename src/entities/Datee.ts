@@ -1,5 +1,4 @@
-import { Entity, Column, PrimaryGeneratedColumn, OneToMany, ManyToOne } from "typeorm";
-import { FootballPitch } from "./FootballPitch";
+import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from "typeorm";
 import { HourlyTime } from "./HourlyTime";
 
 @Entity()
@@ -11,8 +10,8 @@ export class Datee {
     @Column()
     date: string;
 
-    @ManyToOne(type => FootballPitch, footballPitch => footballPitch.dates)
-    footballPitch: FootballPitch;
+    @Column()
+    footballPitchId: number;
 
     @OneToMany(type => HourlyTime, hourlyTime => hourlyTime.date)
     hourlyTimes: HourlyTime[];
