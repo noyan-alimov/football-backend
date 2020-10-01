@@ -3,7 +3,7 @@ import * as express from 'express';
 import { Request, Response } from "express";
 import * as cors from 'cors';
 import { addFootballPitch } from './controllers/addFootballPitch';
-import { addDateAndHourlyTimes } from './controllers/addDateAndHourlyTimes';
+import { addDate } from './controllers/addDate';
 
 const app = express();
 
@@ -18,8 +18,8 @@ app.post('/api/add-football-pitch', (req: Request, res: Response) => {
     addFootballPitch(req, res);
 });
 
-app.post('/api/add-date-and-hourly-times', (req: Request, res: Response) => {
-    addDateAndHourlyTimes(req, res);
+app.post('/api/add-date', (req: Request, res: Response) => {
+    addDate(req, res);
 });
 
 const port: number = 8000;
