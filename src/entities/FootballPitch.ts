@@ -1,4 +1,5 @@
-import { Entity, Column, PrimaryGeneratedColumn } from "typeorm";
+import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from "typeorm";
+import { Datee } from "./Datee";
 
 @Entity()
 export class FootballPitch {
@@ -18,6 +19,8 @@ export class FootballPitch {
     @Column()
     pricePerHourInKzt: number;
 
-    @Column()
-    dates: string[]
+    @OneToMany(type => Datee, date => date.footballPitch, {
+        nullable: true
+    })
+    dates: Datee[];
 }

@@ -1,7 +1,7 @@
 import { createConnection } from "typeorm";
 import { FootballPitch } from './entities/FootballPitch';
 import { Datee } from './entities/Datee';
-import { HourlyTime } from './entities/HourlyTime';
+// import { HourlyTime } from './entities/HourlyTime';
 
 export const connectionToDB = createConnection({
     type: "postgres",
@@ -12,7 +12,8 @@ export const connectionToDB = createConnection({
     database: "football",
     entities: [
         FootballPitch,
-        Datee,
-        HourlyTime
-    ]
+        Datee
+        // HourlyTime
+    ],
+    synchronize: true
 });
