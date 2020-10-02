@@ -2,9 +2,9 @@ import 'reflect-metadata';
 import * as express from 'express';
 import { Request, Response } from "express";
 import * as cors from 'cors';
-import { addFootballPitchRoute, getAllFootballPitchesRoute, getFootballPitchRoute } from './routes/footballPitch';
-import { addDateRoute } from './routes/date';
-import { addHourlyTimeRoute } from './routes/hourlyTime';
+import { footballPitchRoute } from './routes/footballPitch';
+import { dateRoute } from './routes/date';
+import { hourlyTimeRoute } from './routes/hourlyTime';
 
 export const app = express();
 
@@ -15,11 +15,9 @@ app.get('/', (req: Request, res: Response) => {
     res.json({ success: true });
 });
 
-addFootballPitchRoute();
-addDateRoute();
-addHourlyTimeRoute();
-getAllFootballPitchesRoute();
-getFootballPitchRoute();
+footballPitchRoute();
+dateRoute();
+hourlyTimeRoute();
 
 const port: number = 8000;
 app.listen(port, () => {
