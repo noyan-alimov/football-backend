@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
-import { connectionToDB } from "../connectionToDB";
-import { Datee } from "../entities/Datee";
-import { FootballPitch } from '../entities/FootballPitch';
+import { connectionToDB } from "../../connectionToDB";
+import { Datee } from "../../entities/Datee";
+import { FootballPitch } from '../../entities/FootballPitch';
 
 export const addDate = (req: Request, res: Response) => {
     connectionToDB.then(async connection => {

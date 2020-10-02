@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
-import { connectionToDB } from "../connectionToDB";
-import { Datee } from "../entities/Datee";
-import { HourlyTime } from "../entities/HourlyTime";
+import { connectionToDB } from "../../connectionToDB";
+import { Datee } from "../../entities/Datee";
+import { HourlyTime } from "../../entities/HourlyTime";
 
 export const addHourlyTime = (req: Request, res: Response) => {
     connectionToDB.then(async connection => {

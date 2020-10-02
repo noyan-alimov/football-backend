@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
-import { connectionToDB } from "../connectionToDB";
-import { FootballPitch } from '../entities/FootballPitch';
+import { connectionToDB } from "../../connectionToDB";
+import { FootballPitch } from '../../entities/FootballPitch';
 
 export const addFootballPitch = (req: Request, res: Response) => {
     connectionToDB.then(async connection => {
