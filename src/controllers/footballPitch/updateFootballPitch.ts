@@ -3,19 +3,26 @@ import { successfulResponse, unsuccessfulResponse } from "../../apiResponses";
 import { connectionToDB } from "../../connectionToDB";
 import { FootballPitch } from '../../entities/FootballPitch';
 
-export const addFootballPitch = (req: Request, res: Response) => {
+export const updateFootballPitch = (req: Request, res: Response) => {
     connectionToDB.then(async connection => {
-        let footballPitch = new FootballPitch();
+        const footballPitchId = req.params.id;
+        let footballPitchRepository = connection.getRepository(FootballPitch);
+        let footballPitch = await footballPitchRepository.findOne(footballPitchId);
+
+        if (!footballPitch) {
+            unsuccessfulResponse(res, 404, 'football pitch not found');
+        }
+
         footballPitch.name = req.body.name;
         footballPitch.address = req.body.address;
         footballPitch.contactNumber = req.body.contactNumber;
         footballPitch.pricePerHourInKzt = req.body.pricePerHourInKzt;
-        let footballPitchRepository = connection.getRepository(FootballPitch);
+
         await footballPitchRepository.save(footballPitch);
 
-        successfulResponse(res, 201, footballPitch);
+        successfulResponse(res, 200, footballPitch);
     }).catch(error => {
-        console.log('Error adding football pitch, something is wrong with the database', error);
+        console.log('Error getting a football pitch', error);
         unsuccessfulResponse(res, 500, 'internal server error');
     })
 }

@@ -1,32 +1,23 @@
 import { Request, Response } from "express";
-import { unsuccessfulResponse } from "../../apiResponses";
+import { successfulResponse, unsuccessfulResponse } from "../../apiResponses";
 import { connectionToDB } from "../../connectionToDB";
-import { Datee } from "../../entities/Datee";
 import { FootballPitch } from '../../entities/FootballPitch';
 
-export const addDate = (req: Request, res: Response) => {
+export const deleteFootballPitch = (req: Request, res: Response) => {
     connectionToDB.then(async connection => {
-        let date = new Datee();
-        date.date = req.body.date;
-
-        const footballPitchId = req.body.footballPitchId;
+        const footballPitchId = req.params.id;
         let footballPitchRepository = connection.getRepository(FootballPitch);
         let footballPitch = await footballPitchRepository.findOne(footballPitchId);
 
         if (!footballPitch) {
             unsuccessfulResponse(res, 404, 'football pitch not found');
-        } else {
-            date.footballPitch = footballPitch;
         }
 
-        let dateRepository = connection.getRepository(Datee);
-        await dateRepository.save(date);
+        await footballPitchRepository.remove(footballPitch);
 
-        res.status(201).json({ success: true, date });
+        successfulResponse(res, 200, footballPitchId);
     }).catch(error => {
-        console.log('Error adding timetable', error);
+        console.log('Error deleting a football pitch', error);
         unsuccessfulResponse(res, 500, 'internal server error');
     })
 }
-
-
