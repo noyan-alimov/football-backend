@@ -11,9 +11,9 @@ export const deleteHourlyTime = (req: Request, res: Response) => {
 
         if (!hourlyTime) {
             unsuccessfulResponse(res, 404, 'time not found');
-        } else {
-            await hourlyTimeRepository.remove(hourlyTime);
         }
+        
+        await hourlyTimeRepository.remove(hourlyTime);
 
         successfulResponse(res, 200, hourlyTimeId);
     }).catch(error => {

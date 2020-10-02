@@ -15,9 +15,9 @@ export const addDate = (req: Request, res: Response) => {
 
         if (!footballPitch) {
             unsuccessfulResponse(res, 404, 'football pitch not found');
-        } else {
-            date.footballPitch = footballPitch;
         }
+        
+        date.footballPitch = footballPitch;
 
         let dateRepository = connection.getRepository(Datee);
         await dateRepository.save(date);

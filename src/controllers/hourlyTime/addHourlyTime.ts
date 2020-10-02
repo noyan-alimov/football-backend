@@ -15,9 +15,9 @@ export const addHourlyTime = (req: Request, res: Response) => {
 
         if (!date) {
             unsuccessfulResponse(res, 404, 'date not found');
-        } else {
-            hourlyTime.date = date;
         }
+        
+        hourlyTime.date = date;
 
         let hourlyTimeRepository = connection.getRepository(HourlyTime);
         await hourlyTimeRepository.save(hourlyTime);

@@ -11,9 +11,9 @@ export const deleteDate = (req: Request, res: Response) => {
         
         if (!date) {
             unsuccessfulResponse(res, 404, 'date not found');
-        } else {
-            await dateRepository.remove(date);
         }
+        
+        await dateRepository.remove(date);
 
         successfulResponse(res, 200, dateId);
     }).catch(error => {
