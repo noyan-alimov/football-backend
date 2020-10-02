@@ -3,7 +3,7 @@ import { unsuccessfulResponse } from "../../apiResponses";
 import { connectionToDB } from "../../connectionToDB";
 import { HourlyTime } from "../../entities/HourlyTime";
 
-export const getAllHourlyTimes = (req: Request, res: Response) => {
+export const getHourlyTime = (req: Request, res: Response) => {
     connectionToDB.then(async connection => {
         const hourlyTimeId = req.params.id;
         let hourlyTimeRepository = connection.getRepository(HourlyTime);

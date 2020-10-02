@@ -8,7 +8,7 @@ export const getAllDates = (req: Request, res: Response) => {
         let dateRepository = connection.getRepository(Datee);
         let dates = await dateRepository.find();
         res.status(200).json({ success: true, dates });
-    }).then(error => {
+    }).catch(error => {
         console.log('Error getting all dates', error);
         unsuccessfulResponse(res, 500, 'internal server error');
     })
