@@ -9,7 +9,7 @@ export const addDate = (req: Request, res: Response) => {
         let date = new Datee();
         date.date = req.body.date;
 
-        const footballPitchId = req.body.footballPitchId;
+        const footballPitchId = req.params.footballPitchId;
         let footballPitchRepository = connection.getRepository(FootballPitch);
         let footballPitch = await footballPitchRepository.findOne(footballPitchId);
 
