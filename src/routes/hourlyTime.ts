@@ -1,19 +1,24 @@
 import { Request, Response } from "express";
 import { app } from "..";
 import { addHourlyTime } from "../controllers/hourlyTime/addHourlyTime";
-import { getAllHourlyTimes } from "../controllers/hourlyTime/getAllHourlyTimes";
-import { getHourlyTime } from "../controllers/hourlyTime/getHourlyTime";
+import { deleteHourlyTime } from "../controllers/hourlyTime/deleteHourlyTime";
+import { getHourlyTimesByDateId } from "../controllers/hourlyTime/getHourlyTimesByDateId";
+import { updateHourlyTime } from "../controllers/hourlyTime/updateHourlyTime";
 
 export const hourlyTimeRoute = () => {
-    app.post('/api/hourly-time', (req: Request, res: Response) => {
+    app.post('/api/time', (req: Request, res: Response) => {
         addHourlyTime(req, res);
     });
 
-    app.get('/api/hourly-times', (req: Request, res: Response) => {
-        getAllHourlyTimes(req, res);
+    app.get('/api/times/:dateId', (req: Request, res: Response) => {
+        getHourlyTimesByDateId(req, res);
     });
 
-    app.get('/api/hourly-time/:id', (req: Request, res: Response) => {
-        getHourlyTime(req, res);
+    app.put('/api/time/:id', (req: Request, res: Response) => {
+        updateHourlyTime(req, res);
+    });
+
+    app.delete('/api/time/:id', (req: Request, res: Response) => {
+        deleteHourlyTime(req, res);
     });
 }

@@ -11,10 +11,10 @@ export const updateDate = (req: Request, res: Response) => {
 
         if (!date) {
             unsuccessfulResponse(res, 404, 'date not found');
-        } else {
-            date.date = req.body.date;
-            await dateRepository.save(date);
         }
+        
+        date.date = req.body.date;
+        await dateRepository.save(date);
         
         successfulResponse(res, 200, date);
     }).catch(error => {

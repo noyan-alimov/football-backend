@@ -1,4 +1,5 @@
 import { Request, Response } from "express";
+import { successfulResponse, unsuccessfulResponse } from "../../apiResponses";
 import { connectionToDB } from "../../connectionToDB";
 import { Datee } from "../../entities/Datee";
 import { HourlyTime } from "../../entities/HourlyTime";
@@ -13,7 +14,7 @@ export const addHourlyTime = (req: Request, res: Response) => {
         let date = await dateRepository.findOne({ id: dateId });
 
         if (!date) {
-            res.status(404).json({ success: false, message: 'date not found' });
+            unsuccessfulResponse(res, 404, 'date not found');
         } else {
             hourlyTime.date = date;
         }
@@ -21,9 +22,9 @@ export const addHourlyTime = (req: Request, res: Response) => {
         let hourlyTimeRepository = connection.getRepository(HourlyTime);
         await hourlyTimeRepository.save(hourlyTime);
 
-        res.status(201).json({ success: true, hourlyTime });
+        successfulResponse(res, 201, hourlyTime);
     }).catch(error => {
         console.log('Error adding hourly time', error);
-        res.status(500).json({ success: false, message: 'internal server error' });
+        unsuccessfulResponse(res, 500, 'internal server error');
     })
 }
