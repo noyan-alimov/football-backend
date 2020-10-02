@@ -2,7 +2,7 @@ import 'reflect-metadata';
 import * as express from 'express';
 import { Request, Response } from "express";
 import * as cors from 'cors';
-import { addFootballPitchRoute } from './routes/footballPitch';
+import { addFootballPitchRoute, getAllFootballPitchesRoute, getFootballPitchRoute } from './routes/footballPitch';
 import { addDateRoute } from './routes/date';
 import { addHourlyTimeRoute } from './routes/hourlyTime';
 
@@ -18,6 +18,8 @@ app.get('/', (req: Request, res: Response) => {
 addFootballPitchRoute();
 addDateRoute();
 addHourlyTimeRoute();
+getAllFootballPitchesRoute();
+getFootballPitchRoute();
 
 const port: number = 8000;
 app.listen(port, () => {

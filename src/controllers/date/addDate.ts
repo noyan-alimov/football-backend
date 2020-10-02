@@ -1,4 +1,5 @@
 import { Request, Response } from "express";
+import { unsuccessfulResponse } from "../../apiResponses";
 import { connectionToDB } from "../../connectionToDB";
 import { Datee } from "../../entities/Datee";
 import { FootballPitch } from '../../entities/FootballPitch';
@@ -13,7 +14,7 @@ export const addDate = (req: Request, res: Response) => {
         let footballPitch = await footballPitchRepository.findOne({ id: footballPitchId });
 
         if (!footballPitch) {
-            res.status(404).json({ success: false, message: 'football pitch not found' });
+            unsuccessfulResponse(res, 404, 'football pitch not found');
         } else {
             date.footballPitch = footballPitch;
         }
@@ -24,7 +25,7 @@ export const addDate = (req: Request, res: Response) => {
         res.status(201).json({ success: true, date });
     }).catch(error => {
         console.log('Error adding timetable', error);
-        res.status(500).json({ success: false, message: 'internal server error' });
+        unsuccessfulResponse(res, 500, 'internal server error');
     })
 }
 
