@@ -1,7 +1,9 @@
 import { Request, Response } from "express";
 import { successfulResponse, unsuccessfulResponse } from "../../apiResponses";
 import { connectionToDB } from "../../connectionToDB";
+import { Datee } from "../../entities/Datee";
 import { FootballPitch } from '../../entities/FootballPitch';
+import { HourlyTime } from "../../entities/HourlyTime";
 
 export const deleteFootballPitch = (req: Request, res: Response) => {
     connectionToDB.then(async connection => {
@@ -13,6 +15,15 @@ export const deleteFootballPitch = (req: Request, res: Response) => {
             unsuccessfulResponse(res, 404, 'football pitch not found');
         }
 
+        let dateRepository = connection.getRepository(Datee);
+        let hourlyTimeRepository = connection.getRepository(HourlyTime);
+
+        let dates = await dateRepository.find({ footballPitch });
+        dates.forEach(async date => {
+            await hourlyTimeRepository.delete({ date });
+        })
+
+        await dateRepository.delete({ footballPitch });
         await footballPitchRepository.remove(footballPitch);
 
         successfulResponse(res, 200, footballPitchId);
