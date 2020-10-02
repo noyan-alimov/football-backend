@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import { app } from "..";
 import { addDate } from "../controllers/date/addDate";
 import { getAllDates } from "../controllers/date/getAllDates";
-import { getDate } from "../controllers/date/getDate";
+import { getDateByFootballPitchId } from "../controllers/date/getDatesByFootballPitchId";
 
 export const dateRoute = () => {
     app.post('/api/date', (req: Request, res: Response) => {
@@ -13,7 +13,7 @@ export const dateRoute = () => {
         getAllDates(req, res);
     });
 
-    app.get('/api/date/:id', (req: Request, res: Response) => {
-        getDate(req, res);
+    app.get('/api/date/:footballpitchid', (req: Request, res: Response) => {
+        getDateByFootballPitchId(req, res);
     });
 }
