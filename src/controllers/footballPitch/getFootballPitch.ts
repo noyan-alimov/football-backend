@@ -1,4 +1,5 @@
 import { Request, Response } from "express";
+import { unsuccessfulResponse } from "../../apiResponses";
 import { connectionToDB } from "../../connectionToDB";
 import { FootballPitch } from '../../entities/FootballPitch';
 
@@ -9,12 +10,12 @@ export const getFootballPitch = (req: Request, res: Response) => {
         let footballPitch = await footballPitchRepository.findOne(footballPitchId);
 
         if (!footballPitch) {
-            res.status(404).json({ success: false, message: 'football pitch not found' });
+            unsuccessfulResponse(res, 404, 'football pitch not found');
         }
 
         res.status(200).json({ success: true, footballPitch });
     }).catch(error => {
         console.log('Error getting a football pitch', error);
-        res.status(500).json({ success: false, message: 'internal server error' });
+        unsuccessfulResponse(res, 500, 'internal server error');
     })
 }
