@@ -8,6 +8,9 @@ export class FootballPitch {
     id: number;
 
     @Column()
+    userId: number;
+
+    @Column()
     name: string;
 
     @Column()

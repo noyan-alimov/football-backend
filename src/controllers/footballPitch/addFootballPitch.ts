@@ -6,6 +6,7 @@ import { FootballPitch } from '../../entities/FootballPitch';
 export const addFootballPitch = (req: Request, res: Response) => {
     connectionToDB.then(async connection => {
         let footballPitch = new FootballPitch();
+        footballPitch.userId = req.body.userId;
         footballPitch.name = req.body.name;
         footballPitch.address = req.body.address;
         footballPitch.contactNumber = req.body.contactNumber;
