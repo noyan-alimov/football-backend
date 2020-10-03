@@ -10,7 +10,7 @@ export const addFootballPitch = (req: Request, res: Response) => {
         footballPitch.name = req.body.name;
         footballPitch.address = req.body.address;
         footballPitch.contactNumber = req.body.contactNumber;
-        footballPitch.pricePerHourInKzt = req.body.pricePerHourInKzt;
+        footballPitch.pricePerHour = req.body.pricePerHour;
         let footballPitchRepository = connection.getRepository(FootballPitch);
         await footballPitchRepository.save(footballPitch);
 

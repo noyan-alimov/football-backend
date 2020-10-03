@@ -20,7 +20,7 @@ export class FootballPitch {
     contactNumber: string;
 
     @Column()
-    pricePerHourInKzt: number;
+    pricePerHour: number;
 
     @OneToMany(type => Datee, date => date.footballPitch, {
         nullable: true
