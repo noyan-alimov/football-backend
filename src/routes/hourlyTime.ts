@@ -1,12 +1,12 @@
 import { Request, Response } from "express";
-import { app } from "..";
+import { app, jwtCheck } from "..";
 import { addHourlyTime } from "../controllers/hourlyTime/addHourlyTime";
 import { deleteHourlyTime } from "../controllers/hourlyTime/deleteHourlyTime";
 import { getHourlyTimesByDateId } from "../controllers/hourlyTime/getHourlyTimesByDateId";
 import { updateHourlyTime } from "../controllers/hourlyTime/updateHourlyTime";
 
 export const hourlyTimeRoute = () => {
-    app.post('/api/time', (req: Request, res: Response) => {
+    app.post('/api/time', jwtCheck, (req: Request, res: Response) => {
         addHourlyTime(req, res);
     });
 
@@ -14,11 +14,11 @@ export const hourlyTimeRoute = () => {
         getHourlyTimesByDateId(req, res);
     });
 
-    app.put('/api/time/:id', (req: Request, res: Response) => {
+    app.put('/api/time/:id', jwtCheck, (req: Request, res: Response) => {
         updateHourlyTime(req, res);
     });
 
-    app.delete('/api/time/:id', (req: Request, res: Response) => {
+    app.delete('/api/time/:id', jwtCheck, (req: Request, res: Response) => {
         deleteHourlyTime(req, res);
     });
 }
