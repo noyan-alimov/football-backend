@@ -10,6 +10,11 @@ export const getHourlyTimesByDateId = (req: Request, res: Response) => {
         const dateRepository = connection.getRepository(Datee);
         const date = await dateRepository.findOne(dateId);
 
+        if (!date) {
+            unsuccessfulResponse(res, 404, 'date not found');
+            return
+        }
+
         const hourlyTimeRepository = connection.getRepository(HourlyTime);
         const hourlyTimes = await hourlyTimeRepository.find({ date });
 
