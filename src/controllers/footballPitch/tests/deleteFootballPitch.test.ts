@@ -8,7 +8,7 @@ const token = process.env.TEST_TOKEN;
 it('should return status code 200 and deleted football pitch id', async (done) => {
     const req = { userId: 'randomUserId' };
     const res = await request(app)
-        .delete('/api/football-pitch/3')
+        .delete('/api/footballPitch/3')
         .set('Authorization', `${token}`)
         .send(req);
     expect(res.status).toBe(200);
@@ -19,7 +19,7 @@ it('should return status code 200 and deleted football pitch id', async (done) =
 
 it('should return status code 404', async (done) => {
     const res = await request(app)
-        .delete('/api/football-pitch/1000')
+        .delete('/api/footballPitch/1000')
         .set('Authorization', `${token}`);
     expect(res.status).toBe(404);
     expect(res.body.success).toBeFalsy();

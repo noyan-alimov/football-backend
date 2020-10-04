@@ -11,6 +11,7 @@ export const getFootballPitch = (req: Request, res: Response) => {
 
         if (!footballPitch) {
             unsuccessfulResponse(res, 404, 'football pitch not found');
+            return
         }
 
         successfulResponse(res, 200, footballPitch);

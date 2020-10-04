@@ -14,7 +14,7 @@ it('should return status code 201 and football pitch data', async (done) => {
         pricePerHour: 80
     };
     const res = await request(app)
-        .post('/api/football-pitch')
+        .post('/api/footballPitch')
         .send(req)
         .set('Authorization', token);
     expect(res.status).toBe(201);
@@ -32,7 +32,7 @@ it('should return status code 401', async (done) => {
         pricePerHour: 50  
     };
     const res = await request(app)
-        .post('/api/football-pitch')
+        .post('/api/footballPitch')
         .send(req)
     expect(res.status).toBe(401);
     done();

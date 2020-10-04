@@ -10,6 +10,11 @@ export const getDatesByFootballPitchId = (req: Request, res: Response) => {
         const footballPitchRepository = connection.getRepository(FootballPitch);
         const footballPitch = await footballPitchRepository.findOne(footballPitchId);
 
+        if (!footballPitch) {
+            unsuccessfulResponse(res, 404, 'football pitch not found');
+            return
+        }
+
         const dateRepository = connection.getRepository(Datee);
         const dates = await dateRepository.find({ footballPitch });
 

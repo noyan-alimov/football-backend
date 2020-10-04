@@ -16,7 +16,7 @@ export const deleteDate = (req: Request, res: Response) => {
         }
 
         if (date.userId !== userId) {
-            unsuccessfulResponse(res, 403, 'you are not authorized to delete this date');
+            unsuccessfulResponse(res, 403, 'you are unauthorized to delete this date');
             return
         }
         
