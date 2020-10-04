@@ -6,7 +6,7 @@ import { HourlyTime } from "../../entities/HourlyTime";
 
 export const getHourlyTimesByDateId = (req: Request, res: Response) => {
     connectionToDB.then(async connection => {
-        const dateId = req.params.dateId;
+        const dateId = req.body.dateId;
         const dateRepository = connection.getRepository(Datee);
         const date = await dateRepository.findOne(dateId);
 

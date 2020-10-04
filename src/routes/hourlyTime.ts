@@ -10,7 +10,7 @@ export const hourlyTimeRoute = () => {
         addHourlyTime(req, res);
     });
 
-    app.get('/api/times/:dateId', (req: Request, res: Response) => {
+    app.get('/api/times', (req: Request, res: Response) => {
         getHourlyTimesByDateId(req, res);
     });
 

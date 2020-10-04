@@ -7,7 +7,7 @@ import { getDatesByFootballPitchId } from "../controllers/date/getDatesByFootbal
 import { updateDate } from "../controllers/date/updateDate";
 
 export const dateRoute = () => {
-    app.post('/api/date/:footballPitchId', jwtCheck, (req: Request, res: Response) => {
+    app.post('/api/date', jwtCheck, (req: Request, res: Response) => {
         addDate(req, res);
     });
 
@@ -15,7 +15,7 @@ export const dateRoute = () => {
         getAllDates(req, res);
     });
 
-    app.get('/api/dates/:footballPitchId', (req: Request, res: Response) => {
+    app.get('/api/dates-by-footballPitchId', (req: Request, res: Response) => {
         getDatesByFootballPitchId(req, res);
     });
 
