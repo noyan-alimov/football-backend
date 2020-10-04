@@ -15,7 +15,7 @@ export const dateRoute = () => {
         getAllDates(req, res);
     });
 
-    app.get('/api/date/:footballPitchId', (req: Request, res: Response) => {
+    app.get('/api/dates/:footballPitchId', (req: Request, res: Response) => {
         getDatesByFootballPitchId(req, res);
     });
 

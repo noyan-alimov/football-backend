@@ -8,6 +8,9 @@ export class HourlyTime {
     id: number;
 
     @Column()
+    userId: string;
+
+    @Column()
     time: string;
 
     @Column({ default: false })

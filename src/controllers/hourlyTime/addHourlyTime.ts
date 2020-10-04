@@ -9,12 +9,19 @@ export const addHourlyTime = (req: Request, res: Response) => {
         let hourlyTime = new HourlyTime();
         hourlyTime.time = req.body.time;
         
+        const userId = req.body.userId;
         const dateId = req.body.dateId;
         let dateRepository = connection.getRepository(Datee);
         let date = await dateRepository.findOne({ id: dateId });
 
         if (!date) {
             unsuccessfulResponse(res, 404, 'date not found');
+            return
+        }
+
+        if (hourlyTime.userId !== userId) {
+            unsuccessfulResponse(res, 403, 'you are not authorized to delete this date');
+            return
         }
         
         hourlyTime.date = date;

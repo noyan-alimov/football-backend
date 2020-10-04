@@ -9,6 +9,9 @@ export class Datee {
     id: number;
 
     @Column()
+    userId: string;
+
+    @Column()
     date: string;
 
     @ManyToOne(type => FootballPitch, footballPitch => footballPitch.dates)
