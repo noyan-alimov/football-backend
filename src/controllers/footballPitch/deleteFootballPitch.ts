@@ -8,16 +8,18 @@ import { HourlyTime } from "../../entities/HourlyTime";
 export const deleteFootballPitch = (req: Request, res: Response) => {
     connectionToDB.then(async connection => {
         const footballPitchId = req.params.id;
-        const userId = req.body.id;
+        const userId = req.body.userId;
         let footballPitchRepository = connection.getRepository(FootballPitch);
         let footballPitch = await footballPitchRepository.findOne(footballPitchId);
 
         if (!footballPitch) {
             unsuccessfulResponse(res, 404, 'football pitch not found');
+            return
         }
 
         if (footballPitch.userId !== userId) {
             unsuccessfulResponse(res, 403, 'you are unauthorized to delete this football Pitch');
+            return
         }
 
         let dateRepository = connection.getRepository(Datee);

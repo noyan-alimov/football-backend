@@ -3,6 +3,8 @@ import { app } from "../../../index";
 import dotenv = require('dotenv');
 dotenv.config();
 
+const token = process.env.TEST_TOKEN;
+
 it('should return status code 201 and football pitch data', async (done) => {
     const req = { 
         userId: 'authUserId', 
@@ -11,7 +13,6 @@ it('should return status code 201 and football pitch data', async (done) => {
         contactNumber: '07747 237 456',
         pricePerHour: 50  
     };
-    const token = process.env.TEST_TOKEN;
     const res = await request(app)
         .post('/api/football-pitch')
         .send(req)

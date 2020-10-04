@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { unsuccessfulResponse } from "../../apiResponses";
+import { successfulResponse, unsuccessfulResponse } from "../../apiResponses";
 import { connectionToDB } from "../../connectionToDB";
 import { FootballPitch } from '../../entities/FootballPitch';
 
@@ -13,7 +13,7 @@ export const getFootballPitch = (req: Request, res: Response) => {
             unsuccessfulResponse(res, 404, 'football pitch not found');
         }
 
-        res.status(200).json({ success: true, footballPitch });
+        successfulResponse(res, 200, footballPitch);
     }).catch(error => {
         console.log('Error getting a football pitch', error);
         unsuccessfulResponse(res, 500, 'internal server error');

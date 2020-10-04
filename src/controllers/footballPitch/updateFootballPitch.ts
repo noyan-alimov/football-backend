@@ -6,16 +6,18 @@ import { FootballPitch } from '../../entities/FootballPitch';
 export const updateFootballPitch = (req: Request, res: Response) => {
     connectionToDB.then(async connection => {
         const footballPitchId = req.params.id;
-        const userId = req.body.id;
+        const userId = req.body.userId;
         let footballPitchRepository = connection.getRepository(FootballPitch);
         let footballPitch = await footballPitchRepository.findOne(footballPitchId);
 
         if (!footballPitch) {
             unsuccessfulResponse(res, 404, 'football pitch not found');
+            return
         }
 
         if (footballPitch.userId !== userId) {
             unsuccessfulResponse(res, 403, 'you are unauthorized to update this football Pitch');
+            return
         }
 
         footballPitch.name = req.body.name;
@@ -27,7 +29,7 @@ export const updateFootballPitch = (req: Request, res: Response) => {
 
         successfulResponse(res, 200, footballPitch);
     }).catch(error => {
-        console.log('Error getting a football pitch', error);
+        // console.log('Error getting a football pitch', error);
         unsuccessfulResponse(res, 500, 'internal server error');
     })
 }
