@@ -7,23 +7,23 @@ import { getFootballPitch } from "../controllers/footballPitch/getFootballPitch"
 import { updateFootballPitch } from "../controllers/footballPitch/updateFootballPitch";
 
 export const footballPitchRoute = () => {
-    app.post('/api/football-pitch', jwtCheck, (req: Request, res: Response) => {
+    app.post('/api/footballPitch', jwtCheck, (req: Request, res: Response) => {
         addFootballPitch(req, res);
     });
 
-    app.get('/api/football-pitches', (req: Request, res: Response) => {
+    app.get('/api/footballPitches', (req: Request, res: Response) => {
         getAllFootballPitches(req, res);
     });
 
-    app.get('/api/football-pitch/:id', (req: Request, res: Response) => {
+    app.get('/api/footballPitch/:id', (req: Request, res: Response) => {
         getFootballPitch(req, res);
     });
 
-    app.put('/api/football-pitch/:id', jwtCheck, (req: Request, res: Response) => {
+    app.put('/api/footballPitch/:id', jwtCheck, (req: Request, res: Response) => {
         updateFootballPitch(req, res);
     });
 
-    app.delete('/api/football-pitch/:id', jwtCheck, (req: Request, res: Response) => {
+    app.delete('/api/footballPitch/:id', jwtCheck, (req: Request, res: Response) => {
         deleteFootballPitch(req, res);
     });
 }

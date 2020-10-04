@@ -10,9 +10,9 @@ export const addHourlyTime = (req: Request, res: Response) => {
         hourlyTime.time = req.body.time;
         
         const userId = req.body.userId;
-        const dateId = req.body.dateId;
+        const dateId = req.params.dateId;
         let dateRepository = connection.getRepository(Datee);
-        let date = await dateRepository.findOne({ id: dateId });
+        let date = await dateRepository.findOne(dateId);
 
         if (!date) {
             unsuccessfulResponse(res, 404, 'date not found');

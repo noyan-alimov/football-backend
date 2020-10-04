@@ -6,11 +6,11 @@ import { getHourlyTimesByDateId } from "../controllers/hourlyTime/getHourlyTimes
 import { updateHourlyTime } from "../controllers/hourlyTime/updateHourlyTime";
 
 export const hourlyTimeRoute = () => {
-    app.post('/api/time', jwtCheck, (req: Request, res: Response) => {
+    app.post('/api/date/:dateId/time', jwtCheck, (req: Request, res: Response) => {
         addHourlyTime(req, res);
     });
 
-    app.get('/api/times', (req: Request, res: Response) => {
+    app.get('/api/date/:dateId/times', (req: Request, res: Response) => {
         getHourlyTimesByDateId(req, res);
     });
 
