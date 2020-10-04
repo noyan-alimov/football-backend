@@ -7,11 +7,11 @@ const token = process.env.TEST_TOKEN;
 
 it('should return status code 201 and football pitch data', async (done) => {
     const req = { 
-        userId: 'authUserId', 
-        name: 'Stamford Bridge',
-        address: 'London',
+        userId: 'randomUserId', 
+        name: 'Etihad',
+        address: 'Manchester',
         contactNumber: '07747 237 456',
-        pricePerHour: 50  
+        pricePerHour: 80
     };
     const res = await request(app)
         .post('/api/football-pitch')

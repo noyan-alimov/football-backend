@@ -6,9 +6,9 @@ dotenv.config();
 const token = process.env.TEST_TOKEN;
 
 it('should return status code 200 and deleted football pitch id', async (done) => {
-    const req = { userId: 'authUserId' };
+    const req = { userId: 'randomUserId' };
     const res = await request(app)
-        .delete('/api/football-pitch/6')
+        .delete('/api/football-pitch/3')
         .set('Authorization', `${token}`)
         .send(req);
     expect(res.status).toBe(200);

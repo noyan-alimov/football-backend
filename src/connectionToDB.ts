@@ -8,7 +8,7 @@ let database: string;
 if (process.env.NODE_ENV === 'test') {
     database = 'footballtest'
 } else {
-    database = 'football'
+    database = 'footballtest'
 }
 
 export const connectionToDB = createConnection({

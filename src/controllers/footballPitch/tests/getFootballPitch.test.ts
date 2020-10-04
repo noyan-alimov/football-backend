@@ -2,7 +2,7 @@ import request = require('supertest');
 import { app } from "../../../index";
 
 it('should return status code 200 and one football pitch', async (done) => {
-    const res = await request(app).get('/api/football-pitch/1');
+    const res = await request(app).get('/api/football-pitch/2');
     expect(res.status).toBe(200);
     expect(res.body.success).toBeTruthy();
     expect(res.body.data).toBeDefined();
