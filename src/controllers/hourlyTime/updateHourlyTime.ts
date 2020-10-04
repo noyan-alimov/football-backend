@@ -12,6 +12,7 @@ export const updateHourlyTime = (req: Request, res: Response) => {
 
         if (!hourlyTime) {
             unsuccessfulResponse(res, 404, 'time not found');
+            return
         }
 
         if (hourlyTime.userId !== userId) {
