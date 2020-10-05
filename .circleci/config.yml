@@ -1,0 +1,30 @@
+version: 2.1
+
+
+jobs:
+    build:
+        docker:
+            - image: circleci/node
+        steps:
+            - checkout
+            - run: yarn build
+    
+    test:
+        docker:
+            - image: circleci/node
+        steps:
+            - checkout
+            - run: yarn test
+    
+    scan:
+        docker:
+            - image: circleci/node
+        steps:
+            - checkout
+            - run: yarn audit
+
+workflows:
+    default:
+        - build
+        - test
+        - scan
