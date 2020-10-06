@@ -5,20 +5,31 @@ import { HourlyTime } from './entities/HourlyTime';
 import dotenv = require('dotenv');
 dotenv.config();
 
-let database: string;
+let database: string, host: string, username: string, password: string;
 
 if (process.env.NODE_ENV === 'test') {
     database = 'footballtest'
+    host = 'localhost'
+    username = 'noyan'
+    password = 'na040898'
+} else if (process.env.NODE_ENV === 'development') {
+    database = 'football'
+    host = 'localhost'
+    username = 'noyan'
+    password = 'na040898'
 } else {
     database = `${process.env.DB_NAME}`
+    host = `${process.env.DB_HOST}`
+    username = `${process.env.DB_USERNAME}`
+    password = `${process.env.DB_PASSWORD}`
 }
 
 export const connectionToDB = createConnection({
     type: "postgres",
-    host: `${process.env.DB_HOST}`,
+    host,
     port: 5432,
-    username: `${process.env.DB_USERNAME}`,
-    password: `${process.env.DB_PASSWORD}`,
+    username,
+    password,
     database,
     entities: [
         FootballPitch,
