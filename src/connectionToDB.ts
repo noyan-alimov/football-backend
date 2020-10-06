@@ -12,17 +12,18 @@ if (process.env.NODE_ENV === 'test') {
     host = 'localhost'
     username = 'noyan'
     password = 'na040898'
-} else if (process.env.NODE_ENV === 'development') {
+} else {
     database = 'football'
     host = 'localhost'
     username = 'noyan'
     password = 'na040898'
-} else {
-    database = `${process.env.DB_NAME}`
-    host = `${process.env.DB_HOST}`
-    username = `${process.env.DB_USERNAME}`
-    password = `${process.env.DB_PASSWORD}`
 }
+// } else {
+//     database = `${process.env.DB_NAME}`
+//     host = `${process.env.DB_HOST}`
+//     username = `${process.env.DB_USERNAME}`
+//     password = `${process.env.DB_PASSWORD}`
+// }
 
 export const connectionToDB = createConnection({
     type: "postgres",
