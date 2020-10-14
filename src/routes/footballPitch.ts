@@ -4,6 +4,7 @@ import { addFootballPitch } from "../controllers/footballPitch/addFootballPitch"
 import { deleteFootballPitch } from "../controllers/footballPitch/deleteFootballPitch";
 import { getAllFootballPitches } from "../controllers/footballPitch/getAllFootballPitches";
 import { getFootballPitch } from "../controllers/footballPitch/getFootballPitch";
+import { getFootballPitchesByUserId } from "../controllers/footballPitch/getFootballPitchesByUserId";
 import { updateFootballPitch } from "../controllers/footballPitch/updateFootballPitch";
 
 export const footballPitchRoute = () => {
@@ -17,6 +18,10 @@ export const footballPitchRoute = () => {
 
     app.get('/api/footballPitch/:id', (req: Request, res: Response) => {
         getFootballPitch(req, res);
+    });
+
+    app.get('/api/footballPitchesByUser', (req: Request, res: Response) => {
+        getFootballPitchesByUserId(req, res);
     });
 
     app.put('/api/footballPitch/:id', jwtCheck, (req: Request, res: Response) => {
