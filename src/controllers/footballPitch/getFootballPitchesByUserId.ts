@@ -5,7 +5,7 @@ import { FootballPitch } from '../../entities/FootballPitch';
 
 export const getFootballPitchesByUserId = (req: Request, res: Response) => {
     connectionToDB.then(async connection => {
-        const userId = req.body.userId;
+        const userId = req.params.userId;
         let footballPitchRepository = connection.getRepository(FootballPitch);
         let footballPitches = await footballPitchRepository.find({ userId });
 

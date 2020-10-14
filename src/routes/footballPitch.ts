@@ -20,7 +20,7 @@ export const footballPitchRoute = () => {
         getFootballPitch(req, res);
     });
 
-    app.get('/api/footballPitchesByUser', (req: Request, res: Response) => {
+    app.get('/api/users/:userId/footballPitches', (req: Request, res: Response) => {
         getFootballPitchesByUserId(req, res);
     });
 
