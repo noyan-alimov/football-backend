@@ -6,7 +6,7 @@ import { FootballPitch } from '../../entities/FootballPitch';
 export const updateFootballPitch = (req: Request, res: Response) => {
     connectionToDB.then(async connection => {
         const footballPitchId = req.params.id;
-        const userId = req.body.userId;
+        const userId = req.params.userId;
         let footballPitchRepository = connection.getRepository(FootballPitch);
         let footballPitch = await footballPitchRepository.findOne(footballPitchId);
 

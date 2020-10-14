@@ -24,11 +24,11 @@ export const footballPitchRoute = () => {
         getFootballPitchesByUserId(req, res);
     });
 
-    app.put('/api/footballPitch/:id', jwtCheck, (req: Request, res: Response) => {
+    app.put('/api/users/:userId/footballPitch/:id', jwtCheck, (req: Request, res: Response) => {
         updateFootballPitch(req, res);
     });
 
-    app.delete('/api/footballPitch/:id', jwtCheck, (req: Request, res: Response) => {
+    app.delete('/api/users/:userId/footballPitch/:id', jwtCheck, (req: Request, res: Response) => {
         deleteFootballPitch(req, res);
     });
 }
