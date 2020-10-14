@@ -7,14 +7,13 @@ const token = process.env.TEST_TOKEN;
 
 it('should return status code 200 and football pitch data', async (done) => {
     const req = {
-        userId: 'randomUserId',
         name: 'Old Trafford',
         address: 'Manchester',
         contactNumber: '06646 888 959',
         pricePerHour: 100  
     };
     const res = await request(app)
-        .put('/api/footballPitch/1')
+        .put('/api/users/randomUserId/footballPitch/1')
         .set('Authorization', token)
         .send(req);
     expect(res.status).toBe(200);
@@ -25,14 +24,13 @@ it('should return status code 200 and football pitch data', async (done) => {
 
 it('should return status code 403', async (done) => {
     const req = {
-        userId: 'someotherRandomUserId',
         name: 'Old Trafford',
         address: 'Manchester',
         contactNumber: '06646 888 959',
         pricePerHour: 100  
     };
     const res = await request(app)
-        .put('/api/footballPitch/1')
+        .put('/api/users/someotherRandomUserId/footballPitch/1')
         .set('Authorization', token)
         .send(req);
     expect(res.status).toBe(403);
